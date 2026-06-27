@@ -37,7 +37,7 @@ public class TransactionSystem {
         Product product = this.inventory.searchBarcode(barcode) ;
 
         if (product == null){
-            System.out.println("Produk dengan barcode : " + barcode + "tidak ditemukan!");
+            System.out.println("Produk dengan barcode : " + barcode + " tidak ditemukan!");
             return;
         }
 
@@ -59,12 +59,13 @@ public class TransactionSystem {
 
         undo.push(new TransactionAction(barcode, quantity));
 
-        System.out.println("Barang " + product.getProductName() + "berhasil ditambahkan ke keranjang sebanyak : " + quantity + ".");
+        System.out.println("Barang " + product.getProductName() + " berhasil ditambahkan ke keranjang sebanyak : " + quantity + ".");
         }
         
         public void undoVoid(){
             if (undo.isEmpty()){
                 System.out.println("Tidak ada transaksi!");
+                return;
             }
             TransactionAction lastAction = undo.pop();
 
