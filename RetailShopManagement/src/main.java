@@ -11,14 +11,13 @@ public class main {
         Scanner sh = new Scanner(System.in);
         
         ModulInventory inventory = new ModulInventory();
+        
+        InventoryData.loadInitialData(inventory);
+
+        SistemAntrean antrean = new SistemAntrean();
+        
         TransactionSystem transaction = new TransactionSystem(inventory);
         
-        //penambahan barang awal
-        inventory.addItem("B025", "Sarden ABC", 50, 10900.0);
-        inventory.addItem("B001", "Sari Roti Gandum", 67, 14500.0);
-        inventory.addItem("B010", "Whiskas Kitten", 17, 9500.0);
-        inventory.addItem("B999", "Indomie Cabe Ijo", 2, 3400.0);
-
 
         int menu = 0;
         
@@ -42,16 +41,87 @@ public class main {
                     break;
 
                 case 2:
-                    if(SistemAntrean.getAntrean().isEmpty()){
-                        System.out.println("Antrian masih kosong saat ini.");
+                    SistemAntrean.Pelanggan pelanggan = SistemAntrean.panggilAntrean();
+
+                    if (pelanggan != null){
+                        int subMenu = 0;
+                        do {
+                            clearScreen();
+                            System.out.println("=================================================");
+                            System.out.println("Menu Belanja (" + pelanggan.getNama() + " - " + pelanggan.getNomorAntrean() + ") :");
+                            System.out.println("=================================================");
+                            System.out.println("1. Tambah Barang");
+                            System.out.println("2. Batalkan Barang Terakhir");
+                            System.out.println("3. Cek Keranjang");
+                            System.out.println("4. Selesai & Checkout");
+                            System.out.println("=================================================");
+                            System.out.print("Pilih menu belanja: ");
+                            
+                            while (!sh.hasNextInt()) {
+                                System.out.print("Input harus berupa angka. Pilih menu belanja: ");
+                                sh.next();
+                            }
+                            subMenu = sh.nextInt();
+                            sh.nextLine();
+
+                            switch (subMenu) {
+                                case 1:
+                                    System.out.print("Masukkan Barcode Barang: ");
+                                    String barcode = sh.nextLine().trim();
+                                    System.out.print("Masukkan Jumlah Barang: ");
+                                    while (!sh.hasNextInt()) {
+                                        System.out.print("Jumlah harus berupa angka. Masukkan Jumlah Barang: ");
+                                        sh.next();
+                                    }
+                                    int quantity = sh.nextInt(); 
+                                    sh.nextLine();
+                                    transaction.AddToCart(barcode, quantity);
+                                    System.out.println("\nTekan Enter untuk melanjutkan...");
+                                    sh.nextLine();
+                                    break;
+                                case 2:
+                                    transaction.undoVoid();
+                                    System.out.println("\nTekan Enter untuk melanjutkan...");
+                                    sh.nextLine();
+                                    break;
+                                case 3:
+                                    clearScreen();
+                                    transaction.displayCart();
+                                    System.out.println("\nTekan Enter untuk melanjutkan...");
+                                    sh.nextLine();
+                                    break;
+                                case 4:
+                                    clearScreen();
+                                    System.out.println("========== STRUK PEMBAYARAN FINAL ==========");
+                                    transaction.displayCart();
+                                    transaction.clearCart();
+                                    System.out.println("\nTransaksi selesai. Tekan Enter untuk kembali ke menu utama...");
+                                    sh.nextLine();
+                                    break;
+                                default:
+                                    System.out.println("Pilihan tidak valid!");
+                                    System.out.println("\nTekan Enter untuk melanjutkan...");
+                                    sh.nextLine();
+                                    break;
+                            }
+                        } while (subMenu != 4);
                     }
-                    else {
-                        SistemAntrean.getAntrean().poll();
-                    }
+                    clearScreen();
                     break;
 
                 case 3:
-                
+                    clearScreen();
+                    System.out.println("================= INVENTARIS TOKO ==================");
+                    System.out.printf("%-10s %-32s %-10s %-10s\n", "Barcode", "Nama Barang", "Stok", "Harga");
+                    System.out.println("----------------------------------------------------");
+                    for (Product p : inventory.getDatabaseItem().values()) {
+                        System.out.printf("%-10s %-32s %-10d Rp%-10.2f\n", 
+                                p.getBarcode(), p.getProductName(), p.getStock(), p.getPrice());
+                    }
+                    System.out.println("====================================================");
+                    System.out.println("\nTekan Enter untuk kembali ke menu utama...");
+                    sh.nextLine();
+                    clearScreen();
                     break;
                 
                 case 0:

@@ -177,13 +177,14 @@ public class SistemAntrean {
         return kode + String.format("%03d", nomorUrut++);
     }
 
-    public static void panggilAntrean() {
+    public static Pelanggan panggilAntrean() {
         garis();
         System.out.println("        PANGGIL ANTREAN BERIKUTNYA");
         garis();
 
         if (antrean.isEmpty()) {
             System.out.println("Tidak ada pelanggan dalam antrean.");
+            return null;
         } else {
             Pelanggan pelanggan = antrean.poll();
             pelanggan.setStatus("Sedang Dilayani");
@@ -194,11 +195,7 @@ public class SistemAntrean {
             System.out.println("Jenis Layanan : " + pelanggan.getJenisLayanan());
             System.out.println("Status        : " + pelanggan.getStatus());
 
-            /*
-             * Bagian ini bisa dihubungkan ke modul transaksi.
-             * Contoh:
-             * transaksi.mulaiTransaksi(pelanggan);
-             */
+            return pelanggan;
         }
     }
 
