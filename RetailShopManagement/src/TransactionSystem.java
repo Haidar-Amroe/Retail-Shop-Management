@@ -93,7 +93,6 @@ public class TransactionSystem {
                 return;
             }
 
-            System.out.println("===ISI KERANJANG BELANJA===");
             System.out.printf("%-20s %-10s %-15s %-15s\n", "Nama Barang", "Kuantitas", "Harga Satuan", "Subtotal");
             System.out.println("---------------------------------------------------------");
             double totalBelanja = 0;

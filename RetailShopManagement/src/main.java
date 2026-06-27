@@ -92,7 +92,7 @@ public class main {
                                     break;
                                 case 4:
                                     clearScreen();
-                                    System.out.println("========== STRUK PEMBAYARAN FINAL ==========");
+                                    System.out.println("=== STRUK PEMBAYARAN ===");
                                     transaction.displayCart();
                                     transaction.clearCart();
                                     System.out.println("\nTransaksi selesai. Tekan Enter untuk kembali ke menu utama...");
@@ -133,7 +133,6 @@ public class main {
                     }
 
             } while (menu != 0);
-
                 }
             }
             
