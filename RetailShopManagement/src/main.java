@@ -12,8 +12,14 @@ public class main {
         
         ModulInventory inventory = new ModulInventory();
         TransactionSystem transaction = new TransactionSystem(inventory);
-        SistemAntrean antrean = new SistemAntrean();
         
+        //penambahan barang awal
+        inventory.addItem("B025", "Sarden ABC", 50, 10900.0);
+        inventory.addItem("B001", "Sari Roti Gandum", 67, 14500.0);
+        inventory.addItem("B010", "Whiskas Kitten", 17, 9500.0);
+        inventory.addItem("B999", "Indomie Cabe Ijo", 2, 3400.0);
+
+
         int menu = 0;
         
         do {
@@ -31,13 +37,17 @@ public class main {
 
             switch (menu) {
                 case 1:
-                    antrean.tampilkanMenuUtama();
-                    
+                    SistemAntrean.tampilkanMenuUtama();
                     clearScreen();
                     break;
 
                 case 2:
-                
+                    if(SistemAntrean.getAntrean().isEmpty()){
+                        System.out.println("Antrian masih kosong saat ini.");
+                    }
+                    else {
+                        SistemAntrean.getAntrean().poll();
+                    }
                     break;
 
                 case 3:
