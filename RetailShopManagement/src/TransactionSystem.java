@@ -109,5 +109,10 @@ public class TransactionSystem {
             System.out.println("---------------------------------------------------------");
             System.out.printf("TOTAL BELANJA: Rp%.2f\n", totalBelanja);
         }
+
+        public void clearCart() {
+            cart.clear();
+            undo.clear();
+        }
 }
 

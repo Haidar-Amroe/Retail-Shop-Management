@@ -40,4 +40,8 @@ public class ModulInventory {
         }
         return null; 
     }
+
+    public Map<String, Product> getDatabaseItem() {
+        return databaseItem;
+    }
 }

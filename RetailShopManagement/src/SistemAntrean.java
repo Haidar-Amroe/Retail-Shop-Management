@@ -292,4 +292,8 @@ public class SistemAntrean {
     public static void garis() {
         System.out.println("==================================================");
     }
+
+    public static Queue<Pelanggan> getAntrean() {
+        return antrean;
+    }
 }
