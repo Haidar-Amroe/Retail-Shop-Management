@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class main {
-    
+//------------HAIDAR------------
         public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -32,8 +32,9 @@ public class main {
             sh.nextLine();
 
             clearScreen();
-            
+//------------------------------
 
+//------------GILDA------------
             switch (menu) {
                 case 1:
                     SistemAntrean.tampilkanMenuUtama();
@@ -63,7 +64,9 @@ public class main {
                             }
                             subMenu = sh.nextInt();
                             sh.nextLine();
+//------------------------------
 
+//------------HAIDAR------------
                             switch (subMenu) {
                                 case 1:
                                     System.out.print("Masukkan Barcode Barang: ");
@@ -108,7 +111,9 @@ public class main {
                     }
                     clearScreen();
                     break;
+//------------------------------
 
+//------------NADHIRA------------
                 case 3:
                     clearScreen();
                     System.out.println("================= INVENTARIS TOKO ==================");
@@ -123,7 +128,11 @@ public class main {
                     sh.nextLine();
                     clearScreen();
                     break;
-                
+
+//------------------------------
+
+
+//------------HAIDAR------------
                 case 0:
                     System.out.println("Terimakasih telah menggunakan jasa Retail Shop Management!");
                     break;
