@@ -75,7 +75,7 @@ Aplikasi Kasir Ritel (Point of Sale) modern terintegrasi dengan Sistem Manajemen
 ---
 
 ## vi. Penggunaan Library Eksternal
-Proyek ini dikembangkan **murni menggunakan pustaka standar bawaan Java (Java Standard Library / JDK)** tanpa memanfaatkan *library* atau dependensi eksternal tambahan. 
+Proyek ini dikembangkan **murni menggunakan library standar bawaan Java (Java Standard Library / JDK)** tanpa memanfaatkan *library* atau dependensi eksternal tambahan. 
 
 * **Library JDK yang Digunakan**:
   * `java.util.Queue` dan `java.util.LinkedList` (untuk sistem antrean)
