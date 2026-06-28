@@ -1,54 +1,85 @@
 # Retail Shop Management - Point of Sale (POS) System
 
-Proyek ini adalah implementasi dari sistem **Point of Sale (POS)** ritel modern yang dirancang untuk mengelola antrean loket pembayaran kasir secara terintegrasi dengan transaksi keranjang belanja dinamis dan manajemen stok inventaris secara *real-time*.
-
-## Tema Proyek: POS (Point of Sale) System
-* **Konteks Masalah**: Sistem Kasir dan Manajemen Stok Toko/Kafe.
-* **Deskripsi**: Aplikasi kasir ritel yang mampu menangani transaksi penjualan secara *real-time*, melakukan pencarian harga dan data barang secara instan berdasarkan ID/Barcode, mengelola antrean pembayaran pelanggan di meja kasir, serta memproses pembatalan item belanjaan terakhir (*Void/Undo*).
+Aplikasi Kasir Ritel (Point of Sale) modern terintegrasi dengan Sistem Manajemen Antrean Pelanggan (*Queue*) dan Pemulihan Stok Barang secara Otomatis (*Undo/Void*).
 
 ---
 
-## Anggota Kelompok (SDA-06)
+## i. Judul dan Deskripsi Singkat Proyek
+* **Judul Proyek**: **Retail Shop Management (POS System)**
+* **Deskripsi Singkat**: Proyek ini merupakan aplikasi POS (Point of Sale) ritel berbasis konsol yang dirancang untuk mengelola antrean pembayaran pelanggan secara dinamis di meja kasir (*Queue Management*), melakukan pencarian informasi harga dan data barang instan berbasis barcode (*Inventory System*), serta menangani pencatatan transaksi belanja yang mendukung pembatalan item belanjaan terakhir (*Undo/Void*) dengan pemulihan sisa stok gudang secara *real-time*.
+
+---
+
+## ii. Nama Anggota Kelompok (SDA-06)
 1. **Muhammad Haidar Amru** - NIM. L0125025
 2. **Nadhira Kamalia Athiya Rifa'i** - NIM. L0125057
 3. **Gilda Tabitha Hadinaba** - NIM. L0125081
 
 ---
 
-## Fitur Utama Program
-1. **Sistem Antrean Kasir (*Queue*)**:
-   * Menambahkan pelanggan baru ke antrean dengan nomor tiket terformat otomatis berdasarkan jenis layanan (Belanja Reguler, Pengambilan Pesanan, Komplain/Retur).
-   * Memanggil pelanggan berikutnya (*FIFO*) untuk dilayani secara langsung oleh kasir.
-   * Menghitung kuantitas antrean saat ini dan memberikan notifikasi kepadatan antrean.
-2. **Sistem Transaksi Keranjang Dinamis**:
-   * Melakukan transaksi belanja dinamis yang dipasangkan langsung dengan pelanggan yang dipanggil dari antrean.
-   * Mendukung penambahan produk dengan validasi barcode dan ketersediaan stok inventaris gudang.
-3. **Fitur Batal Barang Terakhir (*Undo/Void* - Stack)**:
-   * Memungkinkan kasir membatalkan pemindaian item barang terakhir jika terjadi kesalahan input (*LIFO*).
-   * Secara otomatis mengembalikan (memulihkan) jumlah stok barang yang dibatalkan tersebut ke dalam inventaris toko.
+## iii. Penjelasan Fitur-Fitur Utama Program
+1. **Kelola Antrean Kasir (*Queue*)**:
+   * Menambahkan pelanggan baru ke barisan antrean kasir. Setiap pelanggan mendapatkan tiket antrean terformat otomatis sesuai kategori layanan (R untuk Belanja Reguler, P untuk Pengambilan Pesanan, K untuk Komplain/Retur).
+   * Menampilkan seluruh daftar antrean pelanggan aktif yang sedang menunggu pelayanan.
+   * Menghitung kepadatan antrean kasir secara aktual dan memberikan rekomendasi operasional loket.
+2. **Layani Pelanggan & Transaksi Belanja**:
+   * Melakukan pemanggilan pelanggan terdepan secara otomatis (*First In First Out*) untuk dilayani.
+   * Membuka sub-menu transaksi kasir khusus untuk pelanggan aktif tersebut.
+   * Mendukung penambahan belanjaan (*Scan Barang*) dengan pencarian otomatis dan validasi ketersediaan stok inventaris gudang.
+3. **Pembatalan Item Belanja Terakhir (*Undo/Void*)**:
+   * Fitur pembatalan (*void*) yang menghapus data barang yang paling terakhir dimasukkan ke dalam keranjang belanja pelanggan apabila terjadi kesalahan *scan*.
+   * Sistem secara otomatis mengembalikan kuantitas barang yang dibatalkan tersebut ke stok inventaris utama sehingga data persediaan tetap sinkron secara instan.
 4. **Cek Inventaris Toko (*Real-Time*)**:
-   * Menampilkan daftar 28 barang bawaan (dummy data awal) beserta sisa stok dan harga terupdate.
+   * Menampilkan tabel persediaan gudang saat ini (berisi 28 produk bawaan toko yang dimuat dari database awal) beserta sisa stok terupdate dan harganya.
 
 ---
 
-## Struktur Modul Kode (Java)
-Seluruh kode sumber Java disimpan di dalam direktori `RetailShopManagement/src/`:
-* [main.java](file:///d:/haidar/GitRepo/Retail-Shop-Management/RetailShopManagement/src/main.java): Program portal utama kasir yang menghubungkan seluruh alur modul secara interaktif.
-* [ModulInventory.java](file:///d:/haidar/GitRepo/Retail-Shop-Management/RetailShopManagement/src/ModulInventory.java): Struktur data barang (*Product*) dan database penampung item (*ModulInventory*).
-* [SistemAntrean.java](file:///d:/haidar/GitRepo/Retail-Shop-Management/RetailShopManagement/src/SistemAntrean.java): Logika antrean loket pembayaran kasir menggunakan struktur data `Queue` (`LinkedList`).
-* [TransactionSystem.java](file:///d:/haidar/GitRepo/Retail-Shop-Management/RetailShopManagement/src/TransactionSystem.java): Logika transaksi keranjang belanja dan pembatalan item terakhir memanfaatkan struktur data `Stack`.
-* [InventoryData.java](file:///d:/haidar/GitRepo/Retail-Shop-Management/RetailShopManagement/src/InventoryData.java): Kelas pembantu khusus untuk mengisi database inventaris awal dengan 28 jenis barang siap jual.
+## iv. Struktur Data dan Algoritma yang Digunakan Beserta Alasan Pemilihannya
+
+1. **Queue (Interface) & LinkedList (Implementasi)**
+   * **Kegunaan**: Menyimpan barisan pelanggan di meja kasir.
+   * **Alasan Pemilihan**: Antrean loket pembayaran kasir secara alami mengikuti prinsip **FIFO (First In First Out)**, di mana pelanggan yang datang pertama harus dilayani terlebih dahulu. `LinkedList` di Java mengimplementasikan interface `Queue` dan menyediakan operasi penyisipan (*enqueue*) serta pengambilan (*dequeue* / `poll`) dengan kompleksitas waktu $O(1)$, menjamin performa optimal bahkan saat antrean sangat panjang.
+
+2. **Stack**
+   * **Kegunaan**: Menyimpan riwayat log tindakan transaksi belanja untuk fitur pembatalan (*Undo/Void*).
+   * **Alasan Pemilihan**: Fitur pembatalan transaksi terakhir mengikuti prinsip **LIFO (Last In First Out)**. Objek yang paling terakhir masuk keranjang belanja adalah objek yang harus dikeluarkan pertama kali saat terjadi *void*. Kelas `Stack` di Java menyediakan operasi `push` dan `pop` dengan kompleksitas waktu $O(1)$, menjadikannya sangat efisien untuk menyimpan dan mengambil riwayat aksi transaksi.
+
+3. **Map (Interface) & HashMap (Implementasi)**
+   * **Kegunaan**: Digunakan di dua modul, yaitu untuk memetakan barcode ke objek barang (*Inventaris Toko*) dan memetakan barcode ke item keranjang belanja (*Keranjang Dinamis*).
+   * **Alasan Pemilihan**: Kasir membutuhkan proses pencarian data harga dan stok barang secara instan ketika barcode di-scan. `HashMap` menyediakan pencarian berbasis kunci (*key-value*) dengan kompleksitas waktu rata-rata $O(1)$ untuk operasi `get`, `put`, dan `remove`. Hal ini memastikan bahwa kecepatan sistem pencarian harga tetap konstan dan sangat cepat tanpa dipengaruhi oleh banyaknya jumlah produk di dalam gudang.
 
 ---
 
-## Panduan Menjalankan Program
-Untuk mengompilasi dan menjalankan program secara manual melalui terminal:
+## v. Panduan Instalasi dan Menjalankan Program
 
-1. **Kompilasi Seluruh Program**:
+### Persyaratan Sistem
+* Java Development Kit (JDK) versi 11 atau yang lebih baru terinstal pada sistem Anda.
+
+### Langkah-Langkah Menjalankan Aplikasi
+1. **Clone Repositori**:
+   ```bash
+   git clone https://github.com/Haidar-Amroe/Retail-Shop-Management.git
+   cd Retail-Shop-Management
+   ```
+2. **Kompilasi Seluruh Berkas Java**:
+   Kompilasi semua file kode sumber dari root direktori proyek:
    ```bash
    javac -d RetailShopManagement/bin RetailShopManagement/src/*.java
    ```
-2. **Jalankan Aplikasi**:
+3. **Jalankan Program**:
+   Jalankan file biner utama `main`:
    ```bash
    java -cp RetailShopManagement/bin main
    ```
+
+---
+
+## vi. Penggunaan Library Eksternal
+Proyek ini dikembangkan **murni menggunakan pustaka standar bawaan Java (Java Standard Library / JDK)** tanpa memanfaatkan pustaka (*library*) atau dependensi eksternal tambahan. 
+
+* **Pustaka JDK yang Digunakan**:
+  * `java.util.Queue` dan `java.util.LinkedList` (untuk sistem antrean)
+  * `java.util.Stack` (untuk riwayat transaksi undo/void)
+  * `java.util.Map` dan `java.util.HashMap` (untuk sistem database produk & keranjang belanja)
+  * `java.util.Scanner` (untuk membaca input interaktif di terminal)
+* **Konfigurasi Tambahan**: Tidak diperlukan instalasi atau konfigurasi *library* luar apa pun.

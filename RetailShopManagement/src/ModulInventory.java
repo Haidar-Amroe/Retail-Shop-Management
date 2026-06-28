@@ -33,7 +33,7 @@ public class ModulInventory {
         databaseItem.put(barcode, newProduct);
     }
 
-    // 
+    
     public Product searchBarcode(String barcode) {
         if (databaseItem.containsKey(barcode)) {
             return databaseItem.get(barcode); 
