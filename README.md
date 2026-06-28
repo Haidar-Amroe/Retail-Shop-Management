@@ -53,7 +53,7 @@ Aplikasi Kasir Ritel (Point of Sale) modern terintegrasi dengan Sistem Manajemen
 ## v. Panduan Instalasi dan Menjalankan Program
 
 ### Persyaratan Sistem
-* Java Development Kit (JDK) versi 11 atau yang lebih baru terinstal pada sistem Anda.
+* Java Development Kit (JDK) versi 11 atau yang lebih baru terinstal pada sistem.
 
 ### Langkah-Langkah Menjalankan Aplikasi
 1. **Clone Repositori**:
@@ -75,9 +75,9 @@ Aplikasi Kasir Ritel (Point of Sale) modern terintegrasi dengan Sistem Manajemen
 ---
 
 ## vi. Penggunaan Library Eksternal
-Proyek ini dikembangkan **murni menggunakan pustaka standar bawaan Java (Java Standard Library / JDK)** tanpa memanfaatkan pustaka (*library*) atau dependensi eksternal tambahan. 
+Proyek ini dikembangkan **murni menggunakan pustaka standar bawaan Java (Java Standard Library / JDK)** tanpa memanfaatkan *library* atau dependensi eksternal tambahan. 
 
-* **Pustaka JDK yang Digunakan**:
+* **Library JDK yang Digunakan**:
   * `java.util.Queue` dan `java.util.LinkedList` (untuk sistem antrean)
   * `java.util.Stack` (untuk riwayat transaksi undo/void)
   * `java.util.Map` dan `java.util.HashMap` (untuk sistem database produk & keranjang belanja)
