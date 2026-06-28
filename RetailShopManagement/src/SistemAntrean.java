@@ -54,11 +54,10 @@ public class SistemAntrean {
             System.out.println("            SISTEM ANTREAN KASIR");
             garis();
             System.out.println("1. Tambah Antrean Pelanggan");
-            System.out.println("2. Panggil Antrean Berikutnya");
-            System.out.println("3. Lihat Daftar Antrean");
-            System.out.println("4. Lihat Antrean Terdepan");
-            System.out.println("5. Hitung Jumlah Antrean");
-            System.out.println("6. Kosongkan Antrean");
+            System.out.println("2. Lihat Daftar Antrean");
+            System.out.println("3. Lihat Antrean Terdepan");
+            System.out.println("4. Hitung Jumlah Antrean");
+            System.out.println("5. Kosongkan Antrean");
             System.out.println("0. Keluar");
             garis();
             System.out.print("Pilih menu: ");
@@ -76,18 +75,15 @@ public class SistemAntrean {
                     tambahAntrean();
                     break;
                 case 2:
-                    panggilAntrean();
-                    break;
-                case 3:
                     lihatDaftarAntrean();
                     break;
-                case 4:
+                case 3:
                     lihatAntreanTerdepan();
                     break;
-                case 5:
+                case 4:
                     hitungJumlahAntrean();
                     break;
-                case 6:
+                case 5:
                     kosongkanAntrean();
                     break;
                 case 0:
